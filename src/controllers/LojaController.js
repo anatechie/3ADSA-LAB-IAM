@@ -4,14 +4,14 @@ class LojaController{
     async cadastrar(req, res) {
         try{
             //pega os dados passado na requisição
-            const {nome, cnpj, email, telefone} = req.body;
+            const {nome, cnpj,  cep, cidade, estado, email, telefone} = req.body;
 
-            if(!nome || !cnpj || !email){
-                return res.status(400).json({erro: 'Nome, cnpj e email são obrigatórios'});
+            if(!nome || !cnpj || !cep){
+                return res.status(400).json({erro: 'Nome, cnpj e cep são obrigatórios'});
             }
 
             //chama o model para salvaer no bd
-            const novaLojaId = await Loja.criar(nome, cnpj, email, telefone);
+            const novaLojaId = await Loja.criar(nome, cnpj,  cep, cidade, estado, email, telefone);
             return res.status(201).json({mensagem: 'Loja Cadastrada com sucesso!', id_loja: novaLojaId});
 
         } catch (erro){

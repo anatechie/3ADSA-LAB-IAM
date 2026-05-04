@@ -3,6 +3,8 @@ const router = Router();
 
 //importando o controller da LOja
 const LojaController = require('../controllers/LojaController');
+const LogisticaController = require('../controllers/LogisticaController');
+const ClienteController = require('../controllers/ClienteController');
 
 
 //verificar pagamento
@@ -11,11 +13,11 @@ router.post('/pagamento/verifica', (req, res) => {
 });
 
 //calcular prazo de entrega
-router.get('logistica/prazo', (req, res) => {
-    res.json({status:'ok', mensagem: 'Rota GET/logistica/prazo acessada'});
-});
+router.get('/logistica/prazo', LogisticaController.consultarPrazo);
 
 
+//cliente
+router.post('/cliente', ClienteController.cadastrar);
 //notificar entrega
 router.post('/notificacao/envio', (req, res) => {
     res.json({status: 'ok', mensagem: 'Rota PUT/pedido/cancela acessada'});
