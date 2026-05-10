@@ -6,11 +6,10 @@ const LojaController = require('../controllers/LojaController');
 const LogisticaController = require('../controllers/LogisticaController');
 const ClienteController = require('../controllers/ClienteController');
 const PedidoController = require('../controllers/PedidoController');
+const PagamentoController = require('../controllers/PagamentoController');
 
 //verificar pagamento
-router.post('/pagamento/verifica', (req, res) => {
-    res.json({status: 'ok', mensagem: 'Rota POST/pagamento/verifica acessada'})
-});
+router.post('/pagamento', PagamentoController.processarPagamento);
 
 //calcular prazo de entrega
 router.get('/logistica/prazo', LogisticaController.consultarPrazo);

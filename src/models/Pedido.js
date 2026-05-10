@@ -4,12 +4,11 @@ class Pedido{
     static async criar(id_cliente, id_loja, valor_total){
         const query =`
         INSERT INTO pedido (status, valor_total, data_criacao, data_atualizacao, id_cliente, id_loja)
-        VALUES ('Aguardando Pagamento'), ?, now(), now(), ?, ?)
+        VALUES ('Aguardando Pagamento', ?, now(), now(), ?, ?)
         `;
 
         //? -> substituidas na ordem do array
-        const [resultado] = await db.execute(query, [valor_total], id_cliente, id_loja);
-
+        const [resultado] = await db.execute(query, [valor_total, id_cliente, id_loja]);
         return resultado.insertId;
     }
 
