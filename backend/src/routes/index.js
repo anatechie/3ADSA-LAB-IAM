@@ -30,9 +30,10 @@ router.put('/pedido', CancelamentoController.cancelarPedido);
 
 //gerenciar mensagem
 router.post('/mensagem/envio', MensagemController.enviarMensagemCon);
+
 //criar pedido
 router.post('/pedido', PedidoController.criarPedido);
-
+router.get('/pedido', PedidoController.listarPedidos)
 router.post('/loja', LojaController.cadastrar);
 module.exports = router;
 
