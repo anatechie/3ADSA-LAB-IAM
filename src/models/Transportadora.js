@@ -6,7 +6,7 @@ class Transportadora{
         
         const query = 
         `
-        INSERT INTO transportadora (nome, url_api, cep_galpao, cidade, estado ) VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO transportadora (nome, cnpj, url_api, cep_galpao, cidade, estado ) VALUES (?, ?, ?, ?, ?, ?)
          `;
 
          const [resultado] = await db.execute(query, [nome, cnpj, url_api || null, cep_galpao, cidade || null, estado || null]);

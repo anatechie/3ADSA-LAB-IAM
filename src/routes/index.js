@@ -7,6 +7,12 @@ const LogisticaController = require('../controllers/LogisticaController');
 const ClienteController = require('../controllers/ClienteController');
 const PedidoController = require('../controllers/PedidoController');
 const PagamentoController = require('../controllers/PagamentoController');
+const TransportadoraController = require('../controllers/TransportadoraController');
+const EntregaController = require('../controllers/EntregaController');
+//const TransportadoraController = require('../controllers/TransportadoraController');
+const NotificacaoController = require('../controllers/NotificacaoController');
+const CancelamentoController = require('../controllers/CancelamentoController');
+
 
 //verificar pagamento
 router.post('/pagamento', PagamentoController.processarPagamento);
@@ -18,16 +24,12 @@ router.get('/logistica/prazo', LogisticaController.consultarPrazo);
 //cliente
 router.post('/cliente', ClienteController.cadastrar);
 
-//notificar entrega
-router.post('/notificacao/envio', (req, res) => {
-    res.json({status: 'ok', mensagem: 'Rota PUT/pedido/cancela acessada'});
-});
+//entrega
+router.post('/entrega', EntregaController.agendarEntrega);
 
 
 //cancelar pedido
-router.put('/pedido/cancela', (req, res) => {
-    res.json({status:'ok', mensagem: 'Rota PUT /pedido/cancela acessada'});
-});
+router.put('/pedido/cancela', CancelamentoController.cancelarPedido);
 
 //gerenciar mensagem
 router.post('/mensagem/envio', (req, res) => {
@@ -40,3 +42,8 @@ router.post('/pedido', PedidoController.criarPedido);
 router.post('/loja', LojaController.cadastrar);
 module.exports = router;
 
+//transportadora
+router.post('/transportadora', TransportadoraController.cadastrarTransportadora);
+
+//notificar entrega
+router.post('/notificacao', NotificacaoController.notificarCliente);
