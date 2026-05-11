@@ -8,6 +8,11 @@ class Cliente{
         const [resultado] = await db.execute(query, [nome, cpf, data_nascimento, email, senha, telefone, cep, logradouro, numero, bairro, cidade, estado]);
         return resultado.insertId;
     }
+    static async buscarTodos() {
+        const query = 'SELECT * FROM cliente';
+        const [linhas] = await db.execute(query);
+        return linhas;
+    }
 }
 
 module.exports = Cliente;

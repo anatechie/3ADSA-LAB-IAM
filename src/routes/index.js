@@ -3,7 +3,6 @@ const router = Router();
 
 //importando o controller 
 const LojaController = require('../controllers/LojaController');
-const LogisticaController = require('../controllers/LogisticaController');
 const ClienteController = require('../controllers/ClienteController');
 const PedidoController = require('../controllers/PedidoController');
 const PagamentoController = require('../controllers/PagamentoController');
@@ -12,30 +11,25 @@ const EntregaController = require('../controllers/EntregaController');
 //const TransportadoraController = require('../controllers/TransportadoraController');
 const NotificacaoController = require('../controllers/NotificacaoController');
 const CancelamentoController = require('../controllers/CancelamentoController');
+const MensagemController = require('../controllers/MensagemController');
 
 
 //verificar pagamento
 router.post('/pagamento', PagamentoController.processarPagamento);
 
-//calcular prazo de entrega
-router.get('/logistica/prazo', LogisticaController.consultarPrazo);
-
-
 //cliente
 router.post('/cliente', ClienteController.cadastrar);
+router.get('/cliente', ClienteController.listarClientes);
 
 //entrega
 router.post('/entrega', EntregaController.agendarEntrega);
 
 
 //cancelar pedido
-router.put('/pedido/cancela', CancelamentoController.cancelarPedido);
+router.put('/pedido', CancelamentoController.cancelarPedido);
 
 //gerenciar mensagem
-router.post('/mensagem/envio', (req, res) => {
-    res.json({status: 'ok', mensagem: '"Rota POST /mensagem/envio acessada'});
-});
-
+router.post('/mensagem/envio', MensagemController.enviarMensagemCon);
 //criar pedido
 router.post('/pedido', PedidoController.criarPedido);
 

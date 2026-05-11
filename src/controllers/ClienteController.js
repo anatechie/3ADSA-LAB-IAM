@@ -1,9 +1,9 @@
 const Cliente = require('../models/Cliente');
 
 class ClienteController {
+    
     async cadastrar(req, res) {
         try {
-            
             const { 
                 nome, cpf, data_nascimento, email, senha, 
                 telefone, cep, logradouro, numero, bairro, cidade, estado 
@@ -31,6 +31,17 @@ class ClienteController {
             return res.status(500).json({ erro: 'Falha interna no servidor.' });
         }
     }
+
+    async listarClientes(req, res) {
+        try {
+            const clientes = await Cliente.buscarTodos();
+            return res.status(200).json(clientes);
+        } catch (erro) {
+            console.error('Erro ao listar clientes:', erro);
+            return res.status(500).json({ erro: 'Erro ao carregar lista de clientes.' });
+        }
+    }
+
 }
 
 module.exports = new ClienteController();
