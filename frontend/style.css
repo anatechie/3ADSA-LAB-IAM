@@ -1,169 +1,198 @@
-/* Reset básico */
+/* Reset e Variáveis Globais */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f3f4f6;
-    padding: 20px;
+    background-color: #f4f4f9;
+    color: #374151;
 }
 
-.container {
-    width: 95%; 
-    max-width: 1600px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    overflow: hidden;
-    min-height: 85vh; 
-}
-/* Navbar */
+/* Navbar (Cabeçalho Padrão) */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #e5e7eb;
-    padding: 15px 20px;
+    padding: 15px 5%;
     border-bottom: 1px solid #d1d5db;
 }
 
-.menu-btn {
-    font-size: 24px;
+.navbar h1 {
+    font-size: 20px;
+    color: #1f2937;
+}
+
+/* Links de Navegação da Navbar */
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #374151;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #22c55e;
+}
+
+.menu-btn,
+.user-icon {
     background: none;
     border: none;
     cursor: pointer;
-}
-
-.user-icon {
-    width: 40px;
-    height: 40px;
-    background-color: #9ca3af;
-    color: white;
+    color: #4b5563;
     display: flex;
-    justify-content: center;
     align-items: center;
-    border-radius: 50%;
 }
 
-/* Conteúdo */
-.conteudo {
-    padding: 20px;
+/* Área Comum de Conteúdo */
+.conteudo,
+.container {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
-.alerta-sucesso {
-    background-color: #22c55e;
-    color: white;
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-.cabecalho-pedido {
-    background-color: #f3f4f6;
-    padding: 15px;
-    border: 1px solid #d1d5db;
-    border-bottom: none;
-    border-radius: 4px 4px 0 0;
-}
-
-.grid-pedido {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    border: 1px solid #d1d5db;
-    border-radius: 0 0 4px 4px;
-}
-
-.detalhes-info {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.historico-sidebar {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.card {
-    background-color: #f9fafb;
-    border: 1px solid #e5e7eb;
-    padding: 15px;
-    border-radius: 4px;
-    position: relative;
-}
-
-.prazos-grid {
-    display: flex;
-    gap: 15px;
-}
-
-.prazos-grid .card {
-    flex: 1;
-}
-
-/* Textos e Botões */
-
-h1 { 
-    font-size: 26px; 
-    color: #374151;
-}
-
-h2 { 
-    font-size: 22px; 
-    color: #374151; 
-}
-h3 { 
-    font-size: 16px; 
-    color: #4b5563; 
-    font-weight: bold; 
-    margin-bottom: 12px; 
-
-}
-p, span, .timeline-item { font-size: 15px; color: #1f2937; line-height: 1.5; }
-.btn-mensagem, .btn-excluir { font-size: 14px; }
-
-h3 {
-    font-size: 14px;
+/* Textos de status */
+.carregando {
     color: #6b7280;
-    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .sucesso {
-    color: #16a34a;
+    color: #22c55e;
     font-weight: bold;
 }
 
-.btn-excluir {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    padding: 5px 10px;
+.texto-erro {
+    color: #ef4444 !important;
+    font-weight: bold;
+}
+
+/* Cards Padrão */
+.card {
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* --- GRID PRINCIPAL (Onde estava o erro) --- */
+/* Mudamos para uma abordagem flexível mais robusta */
+.grid-pedido {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    /* Impede que os cards estiquem verticalmente */
+}
+
+/* O lado esquerdo (detalhes) fica com 2/3 da largura */
+.detalhes-info {
+    flex: 2;
+    min-width: 0;
+    /* Impede que o conteúdo force a seção a esticar */
+}
+
+/* O lado direito (histórico) fica com 1/3 da largura */
+.historico-sidebar {
+    flex: 1;
+    min-width: 300px;
+    /* Garante que o histórico não fique muito espremido */
+}
+
+/* --- TELA MINHAS COMPRAS --- */
+.alerta-sucesso {
+    background-color: #22c55e;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.cabecalho-pedido {
     background-color: #e5e7eb;
-    border: 1px solid #9ca3af;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.cabecalho-pedido h2 {
+    font-size: 18px;
+    color: #374151;
+}
+
+.btn-excluir {
+    float: right;
+    background: white;
+    border: 1px solid #d1d5db;
+    padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
+    color: #374151;
+    font-weight: bold;
 }
 
 .btn-mensagem {
     width: 100%;
-    padding: 15px;
-    background-color: #d1d5db;
-    border: 1px solid #9ca3af;
-    border-radius: 4px;
-    font-weight: bold;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    text-decoration: none;
+    /* Remove o sublinhado */
+    color: #374151;
+    /* Garante que o texto não fique azul/roxo de link */
+    display: inline-block;
+    /* Garante que o link se comporte como um bloco de botão */
+    text-align: center;
+    /* Centraliza o texto */
 }
 
-/* Produtos */
+.btn-mensagem:hover {
+    background: #e5e7eb;
+    /* Efeito visual ao passar o mouse */
+}
+
+
+/* Timeline */
+.timeline {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.timeline-item {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 15px;
+    border-left: 2px solid #22c55e;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: #22c55e;
+    border-radius: 50%;
+}
+
+/* Produtos Dinâmicos */
 .produto-item {
     display: flex;
     align-items: center;
@@ -172,44 +201,319 @@ h3 {
     border-bottom: 1px solid #e5e7eb;
 }
 
+.produto-item:last-child {
+    border-bottom: none;
+}
+
 .produto-img {
-    width: 50px;
-    height: 50px;
-    background-color: #d1d5db;
-    border-radius: 4px;
+    width: 60px;
+    height: 60px;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .produto-nome {
     flex: 1;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
 }
 
 .produto-preco {
     font-weight: bold;
-    font-size: 14px;
-}
-
-/* Timeline Básica */
-.timeline {
-    list-style: none;
-    border-left: 2px solid #22c55e;
-    margin-left: 10px;
-    padding-left: 15px;
-}
-
-.timeline-item {
-    margin-bottom: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    position: relative;
-}
-
-.timeline-item::before {
-    content: "✓";
-    position: absolute;
-    left: -24px;
-    top: -2px;
-    background: #f9fafb;
     color: #22c55e;
-    font-size: 12px;
+}
+
+/* --- MODAL DE CANCELAMENTO --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    width: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background: #1e1b4b;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+}
+
+.modal-header h3 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.aviso-icon {
+    color: #fbbf24;
+}
+
+.modal-body {
+    padding: 20px;
+    color: #374151;
+}
+
+.modal-body label {
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.modal-body select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+.estorno-info {
+    background: #cffafe;
+    border: 1px solid #a5f3fc;
+    border-radius: 6px;
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #0891b2;
+}
+
+.btn-red {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-blue {
+    background: #1e1b4b;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-acoes {
+    display: flex;
+    flex-direction: column;
+    /* Coloca um em cima do outro como na sua imagem */
+    gap: 10px;
+    /* Adiciona o espaço que você pediu entre eles */
+}
+
+/*barra hamburguer*/
+/* --- BARRA LATERAL (MENU DRAWER) --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    /* Começa escondida fora da tela */
+    width: 260px;
+    height: 100%;
+    background-color: #1f2937;
+    /* Cor escura padrão */
+    color: white;
+    transition: 0.3s ease;
+    /* Animação suave ao deslizar */
+    z-index: 2000;
+    padding: 25px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Classe que o JS vai adicionar para abrir o menu */
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 10px;
+}
+
+.nav-menu {
+    list-style: none;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    color: #9ca3af;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+.nav-link:hover {
+    background-color: #374151;
+    color: white;
+}
+
+/* Fundo escuro atrás do menu quando aberto */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1500;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* --- ESTILIZAÇÃO DA TELA DO VENDEDOR --- */
+.grid-vendedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card-vendedor {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.info-vendedor h3 {
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.info-vendedor p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.product-stack img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background: #16a34a;
+}
+
+
+/* --- ESTILIZAÇÃO ESPECÍFICA DO CHAT --- */
+.chat-window {
+    height: 450px;
+    overflow-y: auto;
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.balao {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Balão do Cliente (Enviado por você) */
+.balao.enviada {
+    align-self: flex-end;
+    background-color: #22c55e;
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+/* Balão da Loja (Recebido) */
+.balao.recebida {
+    align-self: flex-start;
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-bottom-left-radius: 2px;
+}
+
+.data-msg {
+    font-size: 10px;
+    display: block;
+    margin-top: 5px;
+    opacity: 0.7;
+    text-align: right;
+}
+
+.form-chat {
+    display: flex;
+    gap: 10px;
+}
+
+.form-chat input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-chat input:focus {
+    border-color: #22c55e;
 }

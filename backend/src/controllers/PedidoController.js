@@ -22,13 +22,25 @@ class PedidoController {
 
     async listarPedidos(req, res) {
         try {
-            const pedidos = await Pedido.buscarTodos(); 
+            const pedidos = await Pedido.buscarTodos();
             return res.status(200).json(pedidos);
         } catch (erro) {
             console.error('Erro ao listar pedidos:', erro);
             return res.status(500).json({ erro: 'Erro ao buscar pedidos no banco.' });
         }
     }
-} 
+
+    async updateStatus(req, res) {
+        const { id } = req.params;
+        const { status } = req.body;
+        try {
+            await db.execute('UPDATE pedido SET status = ? WHERE id_pedido = ?', [status, id]);
+            res.json({ message: "Status atualizado com sucesso!" });
+        } catch (error) {
+            res.status(500).json({ error: "Erro ao atualizar no banco" });
+        }
+    }
+
+}
 
 module.exports = new PedidoController();

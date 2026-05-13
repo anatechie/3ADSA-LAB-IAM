@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Minhas Compras</title>
+</head>
+
+<body>
+    <div class="overlay" id="overlay-menu" onclick="toggleMenu()"></div>
+
+    <aside class="sidebar" id="sidebar-menu">
+        <h2>Menu</h2>
+        <nav class="nav-menu">
+            <a href="minhasCompras.html" class="nav-link">
+                <span class="material-icons">shopping_cart</span> Minhas Compras
+            </a>
+            <a href="vendedor.html" class="nav-link">
+                <span class="material-icons">dashboard</span> Gestão Vendedor
+            </a>
+            <a href="chat.html" class="nav-link">
+                <span class="material-icons">chat</span> Chat
+            </a>
+        </nav>
+    </aside>
+
+    <header class="navbar">
+        <button class="menu-btn" onclick="toggleMenu()">
+            <span class="material-icons">menu</span>
+        </button>
+        <h1>Minhas Compras</h1>
+        <div class="user-icon"><span class="material-icons">person</span></div>
+    </header>
+    <main class="conteudo">
+        <div class="alerta-sucesso">✓ Entrega concluída! Uma notificação foi enviada por e-mail.</div>
+        <div class="cabecalho-pedido">
+            <h2 id="numero-pedido-cabecalho">Detalhes do pedido: #000</h2>
+        </div>
+        <div class="grid-pedido">
+
+            <section class="detalhes-info">
+                <div class="card status-pagamento">
+                    <button class="btn-excluir" onclick="abrirModal()">Excluir Pedido</button>
+                    <h3>Status do Pagamento:</h3>
+                    <p class="sucesso">✓ Status: Carregando...</p>
+                </div>
+
+                <div class="prazos-grid" id="container-prazos">
+                    <div class="card">
+                        <h3>Prazo de Envio:</h3>
+                        <p>Enviaremos até o dia <strong>03/03/2026</strong></p>
+                    </div>
+                    <div class="card">
+                        <h3>Prazo de Entrega:</h3>
+                        <p>Estimativa para: <strong>10/03/2026</strong></p>
+                    </div>
+                </div>
+
+                <div class="card lista-produtos" id="lista-produtos-cliente">
+                    <p class="carregando">Buscando itens do pedido no sistema...</p>
+                </div>
+            </section>
+
+            <aside class="historico-sidebar">
+                <div class="card historico">
+                    <h3>Histórico do Pedido:</h3>
+                    <ul class="timeline">
+                        <li class="timeline-item concluido">Pedido Criado</li>
+                        <li class="timeline-item concluido">Pagamento Aprovado</li>
+                        <li class="timeline-item concluido">Em Trânsito</li>
+                        <li class="timeline-item concluido">Pacote Entregue</li>
+                    </ul>
+                </div>
+                <a href="chat.html?pedido=1" class="btn-mensagem">Enviar mensagem ao vendedor</a>
+            </aside>
+
+        </div>
+    </main>
+
+    <div id="modal-cancel" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="material-icons aviso-icon">warning</span>
+                <h3>CONFIRMAR CANCELAMENTO?</h3>
+            </div>
+
+            <div class="modal-body">
+                <p>Tem certeza que deseja cancelar o pedido <strong id="id-modal-dinamico">#000</strong>?</p>
+
+                <label for="motivo-select">Motivo:</label>
+                <select id="motivo-select">
+                    <option>Desistência</option>
+                    <option>Encontrei mais barato</option>
+                    <option>Prazo longo</option>
+                    <option>Outros</option>
+                </select>
+
+                <div class="estorno-info">
+                    <span class="material-icons">error_outline</span>
+                    <div>
+                        <strong>Informação de Estorno:</strong><br>
+                        O valor de <strong id="valor-estorno-dinamico">R$ 0,00</strong> será devolvido via Pix em até
+                        24h.
+                    </div>
+                </div>
+
+                <div class="modal-acoes">
+                    <button class="btn-red" onclick="executarCancelamento()">CONFIRMAR</button>
+                    <button class="btn-blue" onclick="fecharModal()">CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

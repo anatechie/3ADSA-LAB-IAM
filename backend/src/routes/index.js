@@ -33,7 +33,9 @@ router.post('/mensagem/envio', MensagemController.enviarMensagemCon);
 
 //criar pedido
 router.post('/pedido', PedidoController.criarPedido);
-router.get('/pedido', PedidoController.listarPedidos)
+router.get('/pedido', PedidoController.listarPedidos);
+router.put('/pedido/:id', PedidoController.updateStatus);
+
 router.post('/loja', LojaController.cadastrar);
 module.exports = router;
 

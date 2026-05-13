@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat do Pedido - Tech Store</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <a href="minhasCompras.html"
+                style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                <span class="material-icons">arrow_back</span>
+            </a>
+            <h1>Chat do Pedido <span id="display-id-pedido">#</span></h1>
+        </div>
+        <div class="user-icon">
+            <span class="material-icons">account_circle</span>
+        </div>
+    </nav>
+
+    <div class="conteudo">
+        <div class="card">
+            <div class="chat-window" id="chat-window">
+                <p class="carregando">Iniciando conversa...</p>
+            </div>
+
+            <form class="form-chat" id="form-mensagem">
+                <input type="text" id="input-msg" placeholder="Digite sua mensagem..." required>
+                <button type="submit" class="btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

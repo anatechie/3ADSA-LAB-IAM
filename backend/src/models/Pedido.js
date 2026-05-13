@@ -19,12 +19,20 @@ class Pedido {
         return rows[0];
     }
 
+    //join, une entrega e pagamento
     static async buscarTodos() {
         const query = `
-        SELECT * FROM pedido ORDER BY data_criacao DESC
+        SELECT p.id_pedido, p.status as "Status do Pedido: ",  p.valor_total, pag.status as "Status do Pagamento: ", pag.metodo as "Método de Pagamento: ", 
+               e.data_envio_prevista, e.prazo_dias, e.cep 
+        FROM pedido p 
+        LEFT JOIN pagamento pag 
+        ON p.id_pedido = pag.id_pedido
+        LEFT JOIN entrega e 
+        ON p.id_pedido = e.id_pedido
+        ORDER BY p.id_pedido DESC
         `;
-        const [rows] = await db.execute(query);
-        return rows;
+        const [linhas] = await db.execute(query);
+        return linhas;
     }
 }
 
