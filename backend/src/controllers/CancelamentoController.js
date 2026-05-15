@@ -12,8 +12,8 @@ class CancelamentoController {
             const sucesso = await Cancelamento.registrarCancelamento({ id_pedido, motivo, tipo_solicitante });
 
             if (sucesso) {
-                return res.status(200).json({ 
-                    mensagem: 'Pedido cancelado com sucesso e estorno solicitado.', 
+                return res.status(200).json({
+                    mensagem: 'Pedido cancelado com sucesso e estorno solicitado.',
                     id_pedido: id_pedido,
                     status: 'Cancelado'
                 });

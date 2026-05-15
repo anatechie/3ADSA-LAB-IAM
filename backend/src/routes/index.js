@@ -1,46 +1,47 @@
 const { Router } = require('express');
 const router = Router();
 
-//importando o controller 
 const LojaController = require('../controllers/LojaController');
 const ClienteController = require('../controllers/ClienteController');
 const PedidoController = require('../controllers/PedidoController');
 const PagamentoController = require('../controllers/PagamentoController');
 const TransportadoraController = require('../controllers/TransportadoraController');
 const EntregaController = require('../controllers/EntregaController');
-//const TransportadoraController = require('../controllers/TransportadoraController');
 const NotificacaoController = require('../controllers/NotificacaoController');
 const CancelamentoController = require('../controllers/CancelamentoController');
 const MensagemController = require('../controllers/MensagemController');
 
-
-//verificar pagamento
-router.post('/pagamento', PagamentoController.processarPagamento);
-
-//cliente
+// Clientes 
 router.post('/cliente', ClienteController.cadastrar);
 router.get('/cliente', ClienteController.listarClientes);
 
-//entrega
-router.post('/entrega', EntregaController.agendarEntrega);
-
-
-//cancelar pedido
-router.put('/pedido', CancelamentoController.cancelarPedido);
-
-//gerenciar mensagem
-router.post('/mensagem/envio', MensagemController.enviarMensagemCon);
-
-//criar pedido
-router.post('/pedido', PedidoController.criarPedido);
-router.get('/pedido', PedidoController.listarPedidos);
-router.put('/pedido/:id', PedidoController.updateStatus);
-
+// Lojas 
 router.post('/loja', LojaController.cadastrar);
-module.exports = router;
 
-//transportadora
+// Transportadora
 router.post('/transportadora', TransportadoraController.cadastrarTransportadora);
 
-//notificar entrega
+// Pedidos 
+router.post('/pedido', PedidoController.criar);
+router.get('/pedido', PedidoController.listarTodos);
+router.get('/pedido/:id', PedidoController.buscarPorId);
+router.put('/pedido/:id/status', PedidoController.atualizarStatus);
+router.delete('/pedido/:id', PedidoController.excluir);
+
+// Pagamento 
+router.post('/pagamento', PagamentoController.processar);
+
+// Entrega
+router.post('/entrega', EntregaController.agendarEntrega);
+
+// Cancelamento 
+router.put('/pedido/cancelar', CancelamentoController.cancelarPedido);
+
+// Mensagem
+router.post('/mensagens', MensagemController.enviarMensagem);
+router.get('/mensagens/:id_pedido', MensagemController.listarMensagens);
+
+// Notificações
 router.post('/notificacao', NotificacaoController.notificarCliente);
+
+module.exports = router;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,18 @@
     <link rel="stylesheet" href="style.css">
     <title>Gestão de Pedidos - Vendedor</title>
 </head>
+
 <body>
 
     <div class="overlay" id="overlay-menu" onclick="toggleMenu()"></div>
+
     <aside class="sidebar" id="sidebar-menu">
-        <h2>Menu</h2>
+        <h2>Menu Gestão</h2>
         <nav class="nav-menu">
-            <a href="minhasCompras.html" class="nav-link"><span class="material-icons">shopping_cart</span> Minhas Compras</a>
-            <a href="vendedor.html" class="nav-link"><span class="material-icons">dashboard</span> Gestão Vendedor</a>
+            <a href="minhasCompras.html" class="nav-link"><span class="material-icons">shopping_cart</span> Minhas
+                Compras</a>
+            <a href="vendedor.html" class="nav-link active"><span class="material-icons">dashboard</span> Painel
+                Vendedor</a>
         </nav>
     </aside>
 
@@ -22,21 +27,47 @@
         <button class="menu-btn" onclick="toggleMenu()">
             <span class="material-icons">menu</span>
         </button>
-        
-        <h1>Gestão de Pedidos</h1>
+        <h1>Painel do Vendedor</h1>
         <div class="user-icon"><span class="material-icons">person</span></div>
     </header>
 
     <main class="conteudo">
-        <div class="busca-container">
-            <input type="text" placeholder="Buscar pedido ou CPF..." class="search-bar">
+        <div class="acoes-topo" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+            <div class="busca-container" style="flex: 1; margin-right: 20px;">
+                <input type="text" placeholder="Buscar por ID ou Cliente..." class="search-bar"
+                    style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+            </div>
+            <button class="btn-primary" onclick="abrirModalCadastro()">+ Novo Pedido</button>
         </div>
 
         <div class="grid-vendedor" id="grid-vendedor">
-            <p class="carregando">Buscando pedidos no sistema...</p>
+            <p class="carregando">Sincronizando com o banco de dados...</p>
         </div>
     </main>
 
+    <!-- MODAL DE CADASTRO (O "Create" do CRUD) -->
+    <div id="modalPedido" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="material-icons">add_shopping_cart</span>
+                <h3>Lançar Novo Pedido</h3>
+            </div>
+            <div class="modal-body">
+                <label for="new-id-cliente">ID do Cliente:</label>
+                <input type="number" id="new-id-cliente" placeholder="Ex: 1">
+
+                <label for="new-valor">Valor Total (R$):</label>
+                <input type="number" id="new-valor" step="0.01" placeholder="0.00">
+
+                <div class="modal-acoes" style="margin-top: 20px;">
+                    <button class="btn-blue" onclick="salvarPedido()">GERAR PEDIDO</button>
+                    <button class="btn-red" onclick="fecharModalPedido()">CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

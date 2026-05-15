@@ -1,19 +1,16 @@
 class TransportadoraService {
     static async calcularFrete(cepOrigem, cepDestino) {
         try {
-            // Chamada para buscar dados da localidade
             const response = await fetch(`https://viacep.com.br/ws/${cepDestino}/json/`);
             const dadosDestino = await response.json();
 
             if (dadosDestino.erro) {
-                throw new Error('CEP de destino inválido ou não encontrado.');
+                throw new Error('CEP de destino não encontrado.');
             }
 
-            // Simulando o cálculo 
             let valorFrete = 15.00;
             let prazoDias = 3;
 
-            // Se for fora do df, aumenta o prazo e o valor
             if (dadosDestino.uf !== 'DF') {
                 valorFrete = 35.50;
                 prazoDias = 7;
@@ -27,7 +24,7 @@ class TransportadoraService {
                 data_estimada: this.calcularDataEstimada(prazoDias)
             };
         } catch (erro) {
-            console.error('Erro na integração com Transportadora:', erro.message);
+            console.error('Erro ao calcular frete:', erro.message);
             throw erro;
         }
     }
@@ -35,7 +32,7 @@ class TransportadoraService {
     static calcularDataEstimada(dias) {
         const data = new Date();
         data.setDate(data.getDate() + dias);
-        return data.toISOString().split('T')[0]; 
+        return data.toISOString().split('T')[0];
     }
 }
 
