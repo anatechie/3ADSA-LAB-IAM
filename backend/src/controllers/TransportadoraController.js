@@ -4,7 +4,7 @@ class TransportadoraController{
     async cadastrarTransportadora(req, res){
         try{
             const {nome, cnpj, cep_galpao} = req.body;
-            (!nome || !cnpj || !cep_galpao ) 
+            
 
             if(!nome ||  !cnpj || !cep_galpao){
                 return res.status(400).json({erro: 'Nome, cnpj e CEP do galpão dedistribuição são obrigatórios '});

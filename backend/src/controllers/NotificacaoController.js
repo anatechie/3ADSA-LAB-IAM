@@ -12,7 +12,7 @@ class NotificacaoController {
             // Simula tempo de disparo deEmail real 
             console.log(`[SIMULAÇÃO] Disparando ${tipo} para o Cliente ${id_cliente}...`);
 
-            const id_notificacao = await Notificacao.enviarNotifcacao(req.body);
+            const id_notificacao = await Notificacao.enviarNotificacao(req.body);
             
             return res.status(201).json({ 
                 Mensagem_enviada: true,

@@ -15,7 +15,7 @@ class MensagemController {
                 return res.status(400).json({ erro: 'A mensagem precisa ser enviada por um cliente ou por uma loja.' });
             }
 
-            const id_mensagem = await Mensagem.enviarMensagemcon(req.body);
+            const id_mensagem = await Mensagem.enviarMensagem(req.body);
 
             return res.status(201).json({ 
                 mensagem: 'Mensagem enviada com sucesso no chat do pedido!', 

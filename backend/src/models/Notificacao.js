@@ -1,7 +1,7 @@
 const db = require('../config/database');
 
 class Notificacao{
-    static async enviarNotifcacao(dados) {
+    static async enviarNotificacao(dados) {
         const { id_cliente, tipo, mensagem, id_pedido } = dados;
         
         const query = `
