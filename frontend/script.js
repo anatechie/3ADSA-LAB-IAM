@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
         carregarPedidosCliente();
     } else if (path.includes('chat.html')) {
         configurarChat();
+    } else if (path.includes('index.html') || path === '/') {
+        // Chame aqui a função que vai listar todos os pedidos na index
+        carregarListaGeralPedidos(); 
     }
+
 
     // enter na barra de busca 
     const searchBar = document.querySelector('.search-bar');

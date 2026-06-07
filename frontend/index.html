@@ -12,9 +12,19 @@
 <body class="lista-page">
 
     <header class="navbar">
-        <button class="menu-btn">
-            <span class="material-icons">menu</span>
-        </button>
+    <div class="overlay" id="overlay-menu" onclick="toggleMenu()"></div>
+<aside class="sidebar" id="sidebar-menu">
+    <h2>Menu</h2>
+    <nav class="nav-menu">
+        <a href="index.html" class="nav-link"><span class="material-icons">list</span> Histórico</a>
+        <a href="minhasCompras.html" class="nav-link"><span class="material-icons">shopping_cart</span> Detalhes do Pedido</a>
+        <a href="vendedor.html" class="nav-link"><span class="material-icons">dashboard</span> Gestão Vendedor</a>
+    </nav>
+</aside>
+
+<button class="menu-btn" onclick="toggleMenu()">
+    <span class="material-icons">menu</span>
+</button>
 
         <h1>Meus Pedidos</h1>
 
@@ -34,6 +44,10 @@
     </div>
 
     <script src="script.js"></script>
+
+    <div class="overlay" id="overlay-menu" onclick="toggleMenu()"></div>
+
+    
 </body>
 
 </html>
