@@ -328,3 +328,102 @@ async function carregarMensagens(idPedido) {
         chatWindow.scrollTop = chatWindow.scrollHeight;
     } catch (err) { }
 }
+
+
+
+// Função para ABRIR o modal
+function abrirModalCadastro() {
+    const modal = document.getElementById('modalPedido');
+    if (modal) {
+        modal.style.display = 'flex'; // Altera o display para aparecer na tela
+    }
+}
+
+// Função para FECHAR o modal
+function fecharModalPedido() {
+    const modal = document.getElementById('modalPedido');
+    if (modal) {
+        modal.style.display = 'none'; // Esconde o modal novamente
+    }
+}
+
+// Função para quando clicar em GERAR PEDIDO
+
+function salvarPedido() {
+    const idCliente = document.getElementById('new-id-cliente').value;
+    const valorTotal = document.getElementById('new-valor').value;
+
+    // 1. Validação básica
+    if (!idCliente || !valorTotal) {
+        alert("Por favor, preencha todos os campos do pedido!");
+        return;
+    }
+
+    // 2. Organiza os dados para enviar ao seu banco de dados
+    // Ajustei os nomes das propriedades para bater com o padrão do seu GET (id_cliente/id_loja e valor_total)
+    const dadosPedido = {
+        id_cliente: parseInt(idCliente),
+        id_loja: 1, // Definido como padrão baseado no seu código do cliente
+        valor_total: parseFloat(valorTotal),
+        status: "Pendente"
+    };
+
+    // 3. Envia para o banco de dados usando a sua constante API_BASE
+    fetch(`${API_BASE}/pedido`, { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dadosPedido)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao salvar o pedido no banco.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert("Pedido gravado no banco de dados com sucesso!");
+
+        // 4. Limpa os campos do formulário do modal
+        document.getElementById('new-id-cliente').value = '';
+        document.getElementById('new-valor').value = '';
+
+        // 5. Fecha o modal de cadastro
+        fecharModalPedido();
+
+        // 6. ATUALIZA A TELA DO VENDEDOR PUXANDO DO BANCO
+        carregarPedidosVendedor(); 
+    })
+    .catch(error => {
+        console.error('Erro ao conectar com a API:', error);
+        alert("Erro ao salvar o pedido no banco. Certifique-se de que o backend está rodando.");
+    });
+}
+
+    
+
+
+// Função auxiliar para pegar a data de hoje formatada (DD/MM/AAAA)
+function obterDataAtual() {
+    const hoje = new Date();
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // Janeiro é 0
+    const ano = hoje.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+}
+
+// Função para o botão "Enviar Pedido"
+function enviarPedido(numeroPedido) {
+    alert(`Pedido #${numeroPedido} enviado com sucesso!`);
+    // Aqui no futuro você mudará o status de "Pendente" para "Enviado" na API
+}
+
+// Função para o botão "Apagar"
+function apagarPedido(botaoClicado) {
+    // Encontra o card do pedido subindo na árvore do HTML e o remove
+    const card = botaoClicado.closest('.card-pedido');
+    if (card) {
+        card.remove();
+    }
+}
