@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Finalizar Pedido - Tech Store</title>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <a href="minhasCompras.html" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                <span class="material-icons">arrow_back</span>
+            </a>
+            <h1>Finalizar Pedido</h1>
+        </div>
+        <div class="user-icon">
+            <span class="material-icons">person</span>
+        </div>
+    </header>
+
+    <main class="conteudo">
+        <div class="container" style="max-width: 600px; margin: 0 auto;">
+            
+            <div class="card" style="margin-bottom: 20px;">
+                <h3>Resumo do Pedido</h3>
+                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                    <span>ID do Pedido: <strong id="checkout-id-pedido">#1002</strong></span>
+                    <span>Total: <strong style="color: #2e7d32;">R$ 250,00</strong></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Dados do Cartão de Crédito</h3>
+                <form id="form-pagamento" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+                    
+                    <div>
+                        <label for="cartao-numero" style="display:block; margin-bottom:5px;">Número do Cartão:</label>
+                        <input type="text" id="cartao-numero" placeholder="4111 2222 3333 4444" required
+                            style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                        <small style="color: #777;">Dica: Evite começar com "0000" para o pagamento ser aprovado.</small>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>
+                            <label for="cartao-validade" style="display:block; margin-bottom:5px;">Validade:</label>
+                            <input type="text" id="cartao-validade" placeholder="MM/AA" required
+                                style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                        </div>
+                        <div>
+                            <label for="cartao-cvv" style="display:block; margin-bottom:5px;">CVV:</label>
+                            <input type="text" id="cartao-cvv" placeholder="123" required
+                                style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="cartao-parcelas" style="display:block; margin-bottom:5px;">Parcelas:</label>
+                        <select id="cartao-parcelas" style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ddd;">
+                            <option value="1">1x de R$ 250,00 sem juros</option>
+                            <option value="2">2x de R$ 125,00 sem juros</option>
+                            <option value="3">3x de R$ 83,33 sem juros</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="btn-finalizar" style="width: 100%; padding: 12px;">
+                        CONFIRMAR E PAGAR
+                    </button>
+                </form>
+            </div>
+
+            <div id="status-pagamento" style="margin-top: 20px; display: none;">
+                </div>
+
+        </div>
+    </main>
+
+    <script src="checkout.js"></script>
+</body>
+
+</html>

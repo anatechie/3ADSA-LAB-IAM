@@ -427,3 +427,4 @@ function apagarPedido(botaoClicado) {
         card.remove();
     }
 }
+

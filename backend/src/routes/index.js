@@ -1,5 +1,8 @@
 const { Router } = require('express');
+const express = require('express'); // <-- ADICIONE ESTA IMPORTAÇÃO
 const router = Router();
+const rotas = require('./rotas/index'); // ou o caminho correto para o seu index.js
+app.use('/api', rotas);
 
 const LojaController = require('../controllers/LojaController');
 const ClienteController = require('../controllers/ClienteController');
@@ -10,6 +13,9 @@ const EntregaController = require('../controllers/EntregaController');
 const NotificacaoController = require('../controllers/NotificacaoController');
 const CancelamentoController = require('../controllers/CancelamentoController');
 const MensagemController = require('../controllers/MensagemController');
+
+// Middleware necessário para processar o JSON enviado pelo checkout.js
+router.use(express.json()); // <-- ADICIONE ESTA LINHA AQUI
 
 // Clientes 
 router.post('/cliente', ClienteController.cadastrar);
@@ -28,8 +34,8 @@ router.get('/pedido/:id', PedidoController.buscarPorId);
 router.put('/pedido/:id/status', PedidoController.atualizarStatus);
 router.delete('/pedido/:id', PedidoController.excluir);
 
-// Pagamento 
-router.post('/pagamento', PagamentoController.processar);
+// Pagamento (CORRIGIDO PARA O PADRÃO DO SEU FRONTEND)
+router.post('/pagamentos/processar', PagamentoController.processar); // <-- ALTERADA
 
 // Entrega
 router.post('/entrega', EntregaController.agendarEntrega);
